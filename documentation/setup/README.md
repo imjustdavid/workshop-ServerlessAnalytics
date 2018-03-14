@@ -4,7 +4,7 @@ In this section we are going to use a CloudFormation template to perform the fol
 
 * Create a destination bucket in your account where the dataset will be placed. We will refer to this bucket as `<workshop-bucket>` through the rest of the instructions.
 * Copy the dataset over from the workshop source location to the destination  `<workshop-bucket>`. 
-* Create the IAM that grants AWS Glue permissions to work with the dataset
+* Create the IAM role that grants AWS Glue permissions to work with the dataset
 
 
 1. Click the **Launch Stack** link below for the region of your choice.
@@ -38,5 +38,5 @@ In this section we are going to use a CloudFormation template to perform the fol
 
 1. Congratulations! You completed the setup. 
 
-[Back to home page](../../)
+[Back to home page](../../README.md)
 

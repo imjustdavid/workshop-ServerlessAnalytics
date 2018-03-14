@@ -11,7 +11,7 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 
 1. That will take you to the [Amazon Athena query editor](https://console.aws.amazon.com/athena/home) with a very simple SQL query in it:
 
-	```
+	```sql
 	SELECT * FROM "nyc-tlc"."yellow" limit 10;
 	```
 	The Athena query editor has three sections: the catalog navigator, the query pane and the results pane.
@@ -23,7 +23,7 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 
 1. On the query pane, enter the query below and run it.
 
-	```
+	```sql
 	SELECT count(*) as total_rides FROM yellow;
 	```
 

@@ -1,0 +1,101 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+
+Parameters:
+  WsS3BucketBaseName:
+    Type: String
+    Default: justdavid-serverless-analytics-workshop
+    Description: Base name of S3 bucket containing the workshop resources
+  DataPrefix:
+    Default: data/nyc-tlc/
+    Description: source datasets S3 prefix
+    Type: String
+
+Resources:
+  DataBucket:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub "${AWS::StackName}-${AWS::AccountId}-${AWS::Region}"
+
+  GlueServiceRole:
+    Type: "AWS::IAM::Role"
+    Properties: 
+      RoleName: "DefaultAWSGlueServiceRole"
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "glue.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
+      ManagedPolicyArns: 
+        - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+        - "arn:aws:iam::aws:policy/service-role/AWSGlueServiceRole"
+
+  S3ObjectsHelperFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      FunctionName: !Sub "${AWS::StackName}-S3CopyOver"
+      Description: Copies objects from a source S3 bucket to a destination
+      Handler: index.handler
+      Runtime: python2.7
+      Timeout: 120
+      Policies:
+        Statement:
+              -
+                Sid: BucketReadAccess
+                Effect: Allow
+                Action:
+                  - "s3:ListBucket"
+                  - "s3:GetObject"
+                Resource:
+                  - !Sub "arn:aws:s3:::${WsS3BucketBaseName}-${AWS::Region}"
+                  - !Sub "arn:aws:s3:::${WsS3BucketBaseName}-${AWS::Region}/*"
+              -
+                Sid: DestinationBucketWriteAccess
+                Effect: Allow
+                Action:
+                  - "s3:ListBucket"
+                  - "s3:ListBucketVersions"
+                  - "s3:GetBucketVersioning"
+                  - "s3:GetObject"
+                  - "s3:GetObjectVersion"
+                  - "s3:PutObject"
+                  - "s3:PutObjectAcl"
+                  - "s3:PutObjectVersionAcl"
+                  - "s3:DeleteObject"
+                  - "s3:DeleteObjectVersion"
+                  - "s3:CopyObject"
+                Resource:
+                  - !Sub "arn:aws:s3:::${DataBucket}"
+                  - !Sub "arn:aws:s3:::${DataBucket}/*"
+      CodeUri: 
+        Bucket: !Sub "${WsS3BucketBaseName}-${AWS::Region}"
+        Key: "functions/s3copyover.zip"
+
+  CopyDataOver:
+    Type: "Custom::S3Objects"
+    Properties:
+      ServiceToken: !GetAtt S3ObjectsHelperFunction.Arn
+      SourceBucket: !Sub "${WsS3BucketBaseName}-${AWS::Region}"
+      SourcePrefix: !Sub "${DataPrefix}"
+      Bucket: !Ref DataBucket
+      Prefix: !Sub "${DataPrefix}"
+    
+  EmptyDataBucket:
+    Type: "Custom::S3Objects"
+    Properties:
+      ServiceToken: !GetAtt S3ObjectsHelperFunction.Arn
+      Bucket: !Ref DataBucket
+
+Outputs:
+  DataBucket:
+    Description: Bucket where data will be placed
+    Value: !Ref DataBucket
+  GlueServiceRole:
+    Description: Glue service role name
+    Value: !Ref GlueServiceRole

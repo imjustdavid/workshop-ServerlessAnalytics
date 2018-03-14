@@ -253,7 +253,7 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 
 
 
-### Congratulations! You completed the data catalog creation part
+### Congratulations! You completed the data preparation part
 
 [Back to home page](README.md)
 

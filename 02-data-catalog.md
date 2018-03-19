@@ -21,6 +21,9 @@ In this step, you are going to leverage [AWS Glue](https://aws.amazon.com/glue/)
 1. The crawler needs to be able to assume an IAM role that gives it permissions to interact with the AWS resources that AWS Glue requires and also read from the bucket you specified as data store. Choose the IAM role created during setup `DefaultAWSGlueServiceRole` and click **Next**
 
 	![Add Crawler](images/03c-glue-add-crawler.png)
+	
+	
+1. On the *Add another data store* step leave *No* selected and click **Next**.
 		
 1. Click on the **Frequency** drop-down list, select **Run on demand** and click **Next**
 

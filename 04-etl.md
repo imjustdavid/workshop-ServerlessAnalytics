@@ -199,9 +199,9 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 	## @return: map1
 	## @inputs: [frame = datasource0]
 	def addFields(rec):
-	  rec["record_type"] = "fhv"
-	  rec["total_amount"] = 0
-	  return rec
+		rec["record_type"] = "fhv"
+		rec["total_amount"] = 0
+		return rec
 	map1 = Map.apply(frame = datasource0, f = addFields, transformation_ctx = "map1")
 	```
 	

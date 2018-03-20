@@ -14,7 +14,9 @@ In this step, you are going to leverage [AWS Glue](https://aws.amazon.com/glue/)
 
 	![Add Crawler](images/03a-glue-add-crawler.png)
 	
-1. Select `S3` as Data store. Specify the path to the your bucket where raw data files reside `s3://<workshop-bucket>/data/nyc-tlc/` and click **Next**
+1. Select `S3` as Data store. Specify the path to the your bucket where raw data files reside `s3://<workshop-bucket>/data/nyc-tlc/` and click **Next**. 
+
+	**Note:** Double check that the s3 URL finishes with a trailing forward slash `/`
 
 	![Add Crawler](images/03b-glue-add-crawler.png)
 	

@@ -135,30 +135,28 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 	* `dolocationid`
 	* `total_amount`
 
-	Script changes:
+	Locate the line that starts with `datasource0 = glueContext.create_dynamic_frame.from_catalog`. Right below insert the following code snippet: 
 	
-	* Locate the line that starts with `datasource0 = glueContext.create_dynamic_frame.from_catalog`. Right below insert the following code snippet: 
+	```python
+	## @type: Map
+	## @args: [f = addFields, transformation_ctx = "map1"]
+	## @return: map1
+	## @inputs: [frame = datasource0]
+	def addFields(rec):
+		rec["record_type"] = "green"
+		return rec
+	map1 = Map.apply(frame = datasource0, f = addFields, transformation_ctx = "map1")
+	```
 	
-		```python
-		## @type: Map
-		## @args: [f = addFields, transformation_ctx = "map1"]
-		## @return: map1
-		## @inputs: [frame = datasource0]
-		def addFields(rec):
-		  rec["record_type"] = "green"
-		  return rec
-		map1 = Map.apply(frame = datasource0, f = addFields, transformation_ctx = "map1")
-		```
-	
-	* Now find a block of 5 lines with the first one starting with `## @type: ApplyMapping`. Replace those 5 lines by the following code snippet:
-	
-		```python
-		## @type: ApplyMapping
-		## @args: [mapping = [("vendorid", "long", "vendorid", "string"), ("lpep_pickup_datetime", "string", "pickup_datetime", "timestamp"), ("lpep_dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1"]
-		## @return: applymapping1
-		## @inputs: [frame = map1]
-		applymapping1 = ApplyMapping.apply(frame = map1, mappings = [("vendorid", "long", "vendorid", "string"), ("lpep_pickup_datetime", "string", "pickup_datetime", "timestamp"), ("lpep_dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1")
-		```	
+	Now find a block of 5 lines with the first one starting with `## @type: ApplyMapping`. Replace those 5 lines by the following code snippet:
+
+	```python
+	## @type: ApplyMapping
+	## @args: [mapping = [("vendorid", "long", "vendorid", "string"), ("lpep_pickup_datetime", "string", "pickup_datetime", "timestamp"), ("lpep_dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1"]
+	## @return: applymapping1
+	## @inputs: [frame = map1]
+	applymapping1 = ApplyMapping.apply(frame = map1, mappings = [("vendorid", "long", "vendorid", "string"), ("lpep_pickup_datetime", "string", "pickup_datetime", "timestamp"), ("lpep_dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1")
+	```	
 	
 	Save and run the job. It will take it somewhere close to 10 minutes to finish.
 	
@@ -193,30 +191,28 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 	* `pulocationid`
 	* `dolocationid`
 
-	Script changes:
-	
-	* Locate the line that starts with `datasource0 = glueContext.create_dynamic_frame.from_catalog`. Right below insert the following code snippet: 
+	Locate the line that starts with `datasource0 = glueContext.create_dynamic_frame.from_catalog`. Right below insert the following code snippet: 
 		
-		```python
-		## @type: Map
-		## @args: [f = addFields, transformation_ctx = "map1"]
-		## @return: map1
-		## @inputs: [frame = datasource0]
-		def addFields(rec):
-		  rec["record_type"] = "fhv"
-		  rec["total_amount"] = 0
-		  return rec
-		map1 = Map.apply(frame = datasource0, f = addFields, transformation_ctx = "map1")
-		```
+	```python
+	## @type: Map
+	## @args: [f = addFields, transformation_ctx = "map1"]
+	## @return: map1
+	## @inputs: [frame = datasource0]
+	def addFields(rec):
+	  rec["record_type"] = "fhv"
+	  rec["total_amount"] = 0
+	  return rec
+	map1 = Map.apply(frame = datasource0, f = addFields, transformation_ctx = "map1")
+	```
 	
-	* Now find a block of 5 lines with the first one starting with `## @type: ApplyMapping`. Replace those 5 lines by the following code snippet:
+	Now find a block of 5 lines with the first one starting with `## @type: ApplyMapping`. Replace those 5 lines by the following code snippet:
 			
-		```python
-		## @type: ApplyMapping
-		## @args: [mapping = [("dispatching_base_num", "string", "vendorid", "string"), ("pickup_datetime", "string", "pickup_datetime", "timestamp"), ("dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1"]
-		## @return: applymapping1
-		## @inputs: [frame = map1]
-		applymapping1 = ApplyMapping.apply(frame = map1, mappings = [("dispatching_base_num", "string", "vendorid", "string"), ("pickup_datetime", "string", "pickup_datetime", "timestamp"), ("dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1")
+	```python
+	## @type: ApplyMapping
+	## @args: [mapping = [("dispatching_base_num", "string", "vendorid", "string"), ("pickup_datetime", "string", "pickup_datetime", "timestamp"), ("dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1"]
+	## @return: applymapping1
+	## @inputs: [frame = map1]
+	applymapping1 = ApplyMapping.apply(frame = map1, mappings = [("dispatching_base_num", "string", "vendorid", "string"), ("pickup_datetime", "string", "pickup_datetime", "timestamp"), ("dropoff_datetime", "string", "dropoff_datetime", "timestamp"), ("pulocationid", "long", "pulocationid", "long"), ("dolocationid", "long", "dolocationid", "long"), ("total_amount", "double", "total_amount", "double"), ("record_type", "string", "record_type", "string")], transformation_ctx = "applymapping1")
 	```	
 	
 	Save and run the job. It will take it somewhere close to 10 minutes to finish.

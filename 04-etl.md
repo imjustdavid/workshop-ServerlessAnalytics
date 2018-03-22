@@ -226,7 +226,7 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 	* Name: `nyc-tlc-trip-record-data-parquet` 
 	* Data store: S3
 	* Crawl data in: *Specified path in my account*
-	* Include path: `s3://<workshop-bucket>/nyc-tlc-parquet/all`
+	* Include path: `s3://<workshop-bucket>/data/nyc-tlc-parquet/all`
 	* IAM role: `DefaultAWSGlueServiceRole`
 	* Frequency: *Run on demand*
 	* Add database: `nyc-tlc-parquet`

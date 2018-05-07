@@ -83,4 +83,8 @@ The last step to complete our serveless analytics journey is now to visualize th
 	
 ### Congratulations! You completed the data visualization part
 
-[Back to home page](README.md#modules)
+[Back to home page](README.md)
+
+[Back to top](#data-visualization)
+
+

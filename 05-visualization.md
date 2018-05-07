@@ -37,7 +37,7 @@ The last step to complete our serveless analytics journey is now to visualize th
 
 	![QuickSight create data set](images/25-quicksight-dataset-tables.png)
 	
-	Click **Edit/Preview data**
+	Select **Directly query your data** and click **Edit/Preview data**
 
 	![QuickSight create data set](images/25b-quicksight-dataset-spice.png)
 	

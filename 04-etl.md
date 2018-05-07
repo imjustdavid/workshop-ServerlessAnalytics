@@ -243,6 +243,7 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 	SELECT record_type, count(*) AS total_rides
 	FROM "nyc-tlc-parquet"."all"
 	GROUP BY record_type
+	ORDER BY 1
 	```
 	![Athena parquet query](images/19-athena-parquet-heavy-query.png)
 
@@ -257,6 +258,7 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
    	UNION
    	SELECT 'fhv' as record_type, count(*) AS total_rides
    	FROM "nyc-tlc"."fhv"
+	ORDER BY 1
 	```
 	![Athena csv query](images/20-athena-csv-heavy-query.png)
 

@@ -56,5 +56,9 @@ In this step, you are going to leverage [AWS Glue](https://aws.amazon.com/glue/)
 
 ### Congratulations! You completed the data catalog creation part
 
+[Proceed to next section](03-data-discovery.md)
+
 [Back to home page](README.md)
+
+[Back to top](#create-the-data-catalog)
 

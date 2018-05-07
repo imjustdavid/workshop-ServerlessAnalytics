@@ -39,5 +39,15 @@ In this section we are going to use a CloudFormation template to perform the fol
 
 ### Congratulations! You completed the setup
 
+[Proceed to next section](02-data-catalog.md)
+
 [Back to home page](README.md)
+
+[Back to top](#setup)
+
+
+
+
+
+
 

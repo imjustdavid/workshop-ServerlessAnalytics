@@ -265,5 +265,8 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
 
 ### Congratulations! You completed the data preparation part
 
+[Proceed to next section](05-visualization.md)
+
 [Back to home page](README.md)
 
+[Back to top](#data-preparation-etl)

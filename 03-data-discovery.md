@@ -97,4 +97,10 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 
 ### Congratulations! You completed the data discovery part
 
+
+[Proceed to next section](04-etl.md)
+
 [Back to home page](README.md)
+
+[Back to top](#data-discovery-and-exploration)
+

@@ -255,7 +255,7 @@ In this section we will leverage [AWS Glue](https://aws.amazon.com/glue/) to cre
    	SELECT 'yellow' as record_type, count(*) AS total_rides
    	FROM "nyc-tlc"."yellow"
    	UNION
-   	SELECT 'yellow' as record_type, count(*) AS total_rides
+   	SELECT 'fhv' as record_type, count(*) AS total_rides
    	FROM "nyc-tlc"."fhv"
 	```
 	![Athena csv query](images/20-athena-csv-heavy-query.png)

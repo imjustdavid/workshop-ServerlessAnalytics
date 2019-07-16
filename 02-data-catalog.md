@@ -4,30 +4,32 @@ In this step, you are going to leverage [AWS Glue](https://aws.amazon.com/glue/)
 
 1. Navigate to the [AWS Glue management console](https://console.aws.amazon.com/glue/home). Make sure the AWS Region selector matches the one you have been working with so far. If you see a welcome page click **Get started**.
 
-1. In the navigation pane on the left, click on the **Crawlers** link.
+2. In the navigation pane on the left, click on the **Crawlers** link.
 
-1. Click **Add Crawler**
+3. Click **Add Crawler**
 
 	![Add Crawler](images/03-glue-add-crawler.png)
 	
-1. Set the crawler name to `nyc-tlc-trip-record-data` and click **Next**
+4. Set the crawler name to `nyc-tlc-trip-record-data` and click **Next**
 
 	![Add Crawler](images/03a-glue-add-crawler.png)
 	
-1. Select `S3` as Data store. Specify the path to the your bucket where raw data files reside `s3://<workshop-bucket>/data/nyc-tlc/` and click **Next**. 
+5. On the *Specify crawler source type* page, leave all the defaults and click **Next**.
+
+6. Select `S3` as Data store. Specify the path to the your bucket where raw data files reside `s3://<workshop-bucket>/data/nyc-tlc/` and click **Next**. 
 
 	**Note:** Double check that the s3 URL finishes with a trailing forward slash `/`
 
 	![Add Crawler](images/03b-glue-add-crawler.png)
 	
-1. The crawler needs to be able to assume an IAM role that gives it permissions to interact with the AWS resources that AWS Glue requires and also read from the bucket you specified as data store. Choose the IAM role created during setup `DefaultAWSGlueServiceRole` and click **Next**
+7. On the *Add another data store* step leave *No* selected and click **Next**.
+
+8. The crawler needs to be able to assume an IAM role that gives it permissions to interact with the AWS resources that AWS Glue requires and also read from the bucket you specified as data store. Choose the IAM role created during setup `DefaultAWSGlueServiceRole` and click **Next**
 
 	![Add Crawler](images/03c-glue-add-crawler.png)
 	
-	
-1. On the *Add another data store* step leave *No* selected and click **Next**.
-		
-1. Click on the **Frequency** drop-down list, select **Run on demand** and click **Next**
+			
+9. Click on the **Frequency** drop-down list, select **Run on demand** and click **Next**
 
 	![Add Crawler](images/03d-glue-add-crawler.png)
 	

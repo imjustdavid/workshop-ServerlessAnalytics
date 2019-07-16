@@ -9,7 +9,7 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 	
 	If/when the Preview data pop-up dialog window shows up, just click **Preview data**
 
-1. That will take you to the [Amazon Athena query editor](https://console.aws.amazon.com/athena/home) with a very simple SQL query in it:
+2. That will take you to the [Amazon Athena query editor](https://console.aws.amazon.com/athena/home). If you see a welcome page click **Get started**. Let's start with a very simple SQL query in it: 
 
 	```sql
 	SELECT * FROM "nyc-tlc"."yellow" limit 10;
@@ -21,7 +21,7 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 
 	![Athena query editor](images/07-athena-view-data.png)
 
-1. On the query pane, enter the query below and run it.
+3. On the query pane, enter the query below and run it.
 
 	```sql
 	SELECT count(*) as total_rides FROM yellow;
@@ -32,7 +32,7 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 
 	![Athena select count CSV](images/08-athena-select-count-csv.png)
 
-1. The results of Athena queries can be downloaded directly from the results pane by clicking the <img src=images/09-athena-download-icon.png width=10px> icon, without re-executing the query. To make that possible Amazon Athena stores the results of each query on an S3 bucket that you can specify by clicking on **Settings**
+4. The results of Athena queries can be downloaded directly from the results pane by clicking the <img src=images/09-athena-download-icon.png width=10px> icon, without re-executing the query. To make that possible Amazon Athena stores the results of each query on an S3 bucket that you can specify by clicking on **Settings**
 
 	![Athena settings](images/10-athena-settings.png)
 	
@@ -78,7 +78,7 @@ In this step we will leverage [Amazon Athena](https://aws.amazon.com/athena/) to
 	limit 3;
 	```
 
-	**Example#2:** The 10 days with higher average amount
+	**Example#3:** The 10 days with higher average amount
 
 	```sql
 	select 

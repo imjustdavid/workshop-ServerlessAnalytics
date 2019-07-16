@@ -19,7 +19,7 @@ The last step to complete our serveless analytics journey is now to visualize th
 
 	![QuickSight enable data bucket](images/21b-quicksight-select-buckets.png)
 
-	Click **Select buckets** and proceed to provision your QuickSight account.
+	Click **Select buckets** and proceed to provision your QuickSight account and click **Finish**.
 	
 5. Once your QuickSight account is provisioned you can always refine/change access to resources by clicking the <img src=images/21d-quicksight-manage-icon.png width=12px> icon and **Manage QuickSight**
 
@@ -46,7 +46,7 @@ The last step to complete our serveless analytics journey is now to visualize th
 
 	![QuickSight create data set](images/26a-quicksight-dataset-edition.png)
 
-9. Add a calculated field by selecting **Fields** and clicking **New field**. We want a field called `hour_of_day` that we will compute extracting the hour from the `pickup_datetime` source field. Leverage Amazon QuickSight built-in functions for that: `extract('HH',{pickup_datetime})`
+9. In the *Fields* section in the left bar, create a new calculated clicking **Add calculated field**. We want a field called `hour_of_day` that we will compute extracting the hour from the `pickup_datetime` source field. Leverage Amazon QuickSight built-in functions for that: `extract('HH',{pickup_datetime})`
 
 	![QuickSight create data set](images/26b-quicksight-dataset-edition.png)
 	
@@ -56,7 +56,7 @@ The last step to complete our serveless analytics journey is now to visualize th
 
 	![QuickSight line chart](images/28a-quicksight-line-chart.png)
 	
-	If you see something like the above is because your dataset contains a few outlier records with dates outside the range. Use a filter to get a better visualization. Click on the <img src=images/28b-quicksight-filter-icon.png width=12px> icon and create a filter with the following settings:
+	If you see something like the above is because your dataset contains a few outlier records with dates outside the range. Use a filter to get a better visualization. Click on the <img src=images/28b-quicksight-filter-icon.png width=12px> icon and create a filter for *pickup_datetime* with the following settings:
 	
 	* *All visuals*
 	* Filter type: *Time range*, *Between*
